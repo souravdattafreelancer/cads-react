@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.greglturnquist.payroll;
+package com.cads.usermanager;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +31,30 @@ public class Employee {
 
 	private @Id @GeneratedValue Long id;
 	private String firstName;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	private String lastName;
 	private String description;
 
@@ -41,5 +65,11 @@ public class Employee {
 		this.lastName = lastName;
 		this.description = description;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("name = %s", this.firstName);
+	}
+	
 }
 // end::code[]

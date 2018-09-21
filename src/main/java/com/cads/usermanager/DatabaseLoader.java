@@ -13,22 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.greglturnquist.payroll;
+package com.cads.usermanager;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Greg Turnquist
  */
 // tag::code[]
-@Controller
-public class HomeController {
+@Component
+public class DatabaseLoader implements CommandLineRunner {
 
-	@RequestMapping(value = "/")
-	public String index() {
-		return "index";
+	private final EmployeeRepository repository;
+
+	@Autowired
+	public DatabaseLoader(EmployeeRepository repository) {
+		this.repository = repository;
 	}
 
+	@Override
+	public void run(String... strings) throws Exception {
+		this.repository.save(new Employee("Frodo", "Baggins", "ring bearer"));
+		this.repository.save(new Employee("Saruman", "Wizard", "the wise"));
+	}
 }
 // end::code[]
