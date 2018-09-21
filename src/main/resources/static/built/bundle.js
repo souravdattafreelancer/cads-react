@@ -71,7 +71,7 @@
 	
 			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 	
-			_this.state = { employees: [] };
+			_this.state = { users: [] };
 			return _this;
 		}
 	
@@ -80,14 +80,14 @@
 			value: function componentDidMount() {
 				var _this2 = this;
 	
-				client({ method: 'GET', path: '/api/employees' }).done(function (response) {
-					_this2.setState({ employees: response.entity._embedded.employees });
+				client({ method: 'GET', path: '/api/users' }).done(function (response) {
+					_this2.setState({ users: response.entity._embedded.users });
 				});
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-				return React.createElement(EmployeeList, { employees: this.state.employees });
+				return React.createElement(UserList, { users: this.state.users });
 			}
 		}]);
 	
@@ -95,23 +95,23 @@
 	}(React.Component);
 	// end::app[]
 	
-	// tag::employee-list[]
+	// tag::user-list[]
 	
 	
-	var EmployeeList = function (_React$Component2) {
-		_inherits(EmployeeList, _React$Component2);
+	var UserList = function (_React$Component2) {
+		_inherits(UserList, _React$Component2);
 	
-		function EmployeeList() {
-			_classCallCheck(this, EmployeeList);
+		function UserList() {
+			_classCallCheck(this, UserList);
 	
-			return _possibleConstructorReturn(this, (EmployeeList.__proto__ || Object.getPrototypeOf(EmployeeList)).apply(this, arguments));
+			return _possibleConstructorReturn(this, (UserList.__proto__ || Object.getPrototypeOf(UserList)).apply(this, arguments));
 		}
 	
-		_createClass(EmployeeList, [{
+		_createClass(UserList, [{
 			key: 'render',
 			value: function render() {
-				var employees = this.props.employees.map(function (employee) {
-					return React.createElement(Employee, { key: employee._links.self.href, employee: employee });
+				var users = this.props.users.map(function (user) {
+					return React.createElement(User, { key: user._links.self.href, user: user });
 				});
 				return React.createElement(
 					'table',
@@ -125,42 +125,47 @@
 							React.createElement(
 								'th',
 								null,
-								'First Name'
+								'First name'
 							),
 							React.createElement(
 								'th',
 								null,
-								'Last Name'
+								'Last name'
 							),
 							React.createElement(
 								'th',
 								null,
-								'Description'
+								'Phone no.'
+							),
+							React.createElement(
+								'th',
+								null,
+								'Email'
 							)
 						),
-						employees
+						users
 					)
 				);
 			}
 		}]);
 	
-		return EmployeeList;
+		return UserList;
 	}(React.Component);
-	// end::employee-list[]
+	// end::user-list[]
 	
-	// tag::employee[]
+	// tag::user[]
 	
 	
-	var Employee = function (_React$Component3) {
-		_inherits(Employee, _React$Component3);
+	var User = function (_React$Component3) {
+		_inherits(User, _React$Component3);
 	
-		function Employee() {
-			_classCallCheck(this, Employee);
+		function User() {
+			_classCallCheck(this, User);
 	
-			return _possibleConstructorReturn(this, (Employee.__proto__ || Object.getPrototypeOf(Employee)).apply(this, arguments));
+			return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
 		}
 	
-		_createClass(Employee, [{
+		_createClass(User, [{
 			key: 'render',
 			value: function render() {
 				return React.createElement(
@@ -169,25 +174,30 @@
 					React.createElement(
 						'td',
 						null,
-						this.props.employee.firstName
+						this.props.user.firstName
 					),
 					React.createElement(
 						'td',
 						null,
-						this.props.employee.lastName
+						this.props.user.lastName
 					),
 					React.createElement(
 						'td',
 						null,
-						this.props.employee.description
+						this.props.user.phoneNumber
+					),
+					React.createElement(
+						'td',
+						null,
+						this.props.user.email
 					)
 				);
 			}
 		}]);
 	
-		return Employee;
+		return User;
 	}(React.Component);
-	// end::employee[]
+	// end::user[]
 	
 	// tag::render[]
 	
